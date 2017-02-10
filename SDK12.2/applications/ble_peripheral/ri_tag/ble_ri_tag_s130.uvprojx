@@ -379,6 +379,24 @@
         <Group>
           <GroupName>Application</GroupName>
         </Group>
+        <Group>
+          <GroupName>Startup_nRF51822_xxAA</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_startup_nrf51.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Startup_nRF51822_xxAA\arm_startup_nrf51.s</FilePath>
+            </File>
+            <File>
+              <FileName>system_nrf51.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Startup_nRF51822_xxAA\system_nrf51.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CMSIS</GroupName>
+        </Group>
       </Groups>
     </Target>
   </Targets>

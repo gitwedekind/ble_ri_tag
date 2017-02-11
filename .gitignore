@@ -31,3 +31,12 @@
 # Debug files
 *.dSYM/
 *.su
+SDK12.2/applications/ble_peripheral/ri_tag/ble_ri_tag_s130.uvguix.jeffrey
+SDK12.2/applications/ble_peripheral/ri_tag/ble_ri_tag_s130.uvoptx
+SDK12.2/applications/ble_peripheral/ri_tag/ble_ri_tag_s130.uvoptx
+SDK12.2/applications/ble_peripheral/ri_tag/_build/arm_startup_nrf51.d
+SDK12.2/applications/ble_peripheral/ri_tag/_build/arm_startup_nrf51.lst
+SDK12.2/applications/ble_peripheral/ri_tag/_build/ble_ri_tag_s130_nrf51822_xxaa.dep
+SDK12.2/applications/ble_peripheral/ri_tag/_build/nrf51822_xxaa.build_log.htm
+SDK12.2/applications/ble_peripheral/ri_tag/_build/system_nrf51.d
+SDK12.2/applications/ble_peripheral/ri_tag/_build/nrf51822_xxaa.sct

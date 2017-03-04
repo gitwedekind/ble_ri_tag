@@ -6,9 +6,11 @@
 #include "nrf51_sys_headers.h"
 #include "nrf51_ble_headers.h"
 
+#include "BLE400_Utils.h"
+
 #include "SEGGER.h"
 #include "SEGGER_RTT.h"
-
+ 
 #include "SEGGER_SYSVIEW.h"
 
 #include "main.h"
@@ -48,74 +50,6 @@ void ml_active_tasks_idle(void)
     s_ActiveTasks = MAIN_LOOP_TASK_IDLE;
 }
 
-static const uint32_t LED0 = 18;
-static const uint32_t LED1 = 19;
-static const uint32_t LED2 = 20;
-static const uint32_t LED3 = 21;
-static const uint32_t LED4 = 22;
-
-static const uint32_t LED_BLINK_DELAY = 100;
-
-enum {
-    LED_OFF = 0,
-    LED_ON  = 1,
-};
-
-#define LED_ON(x_led) nrf_gpio_pin_write(x_led, LED_ON)
-#define LED_OFF(x_led) nrf_gpio_pin_write(x_led, LED_OFF)
-
-void initialize_led(uint32_t pin)
-{
-    nrf_gpio_cfg_output(pin);
-
-    nrf_gpio_pin_write(pin, LED_ON);
-    nrf_delay_ms(LED_BLINK_DELAY);
-    nrf_gpio_pin_write(pin, LED_OFF);
-    nrf_gpio_pin_write(pin, LED_ON);
-    nrf_gpio_pin_write(pin, LED_OFF);
-}
-
-void initialize_leds(void)
-{
-    initialize_led(LED0);
-    initialize_led(LED1);
-    initialize_led(LED2);
-    initialize_led(LED3);
-    initialize_led(LED4);
-}
-
-static const uint32_t GPIO0 = 0;
-static const uint32_t GPIO1 = 1;
-static const uint32_t GPIO_TOGGLE_DELAY = 100;
-
-enum {
-    GPIO_OFF = 0,
-    GPIO_ON  = 1,
-};
-
-#define GPIO0_ON() nrf_gpio_pin_write(GPIO0, GPIO_ON)
-#define GPIO0_OFF() nrf_gpio_pin_write(GPIO0, GPIO_OFF)
-
-#define GPIO1_ON() nrf_gpio_pin_write(GPIO1, GPIO_ON)
-#define GPIO1_OFF() nrf_gpio_pin_write(GPIO1, GPIO_OFF)
-
-void initialize_gpio(uint32_t pin)
-{
-    nrf_gpio_cfg_output(pin);
-
-    nrf_gpio_pin_write(pin, GPIO_ON);
-    nrf_delay_ms(GPIO_TOGGLE_DELAY);
-    nrf_gpio_pin_write(pin, GPIO_OFF);
-    nrf_gpio_pin_write(pin, GPIO_ON);
-    nrf_gpio_pin_write(pin, GPIO_OFF);
-}
-
-void initialize_gpio_pins(void)
-{
-    initialize_gpio(GPIO0);
-    initialize_gpio(GPIO1);
-}
-
 void rx_callback(uint8_t chr)
 {
 }
@@ -139,7 +73,10 @@ int main(void)
     //SEGGER_RTT_Init();
     //SEGGER_RTT_Write(0, p_segger_msg, strlen(p_segger_msg));
     
-    
+    DEV_BOARD_INIT_LEDS();
+    DEV_BOARD_INIT_GPIO();
+    DEV_BOARD_INIT_BUTTONS();
+
     sys_uart_initialize(rx_callback, tx_callback, error_callback);
     
     static char test[128] = {0};
@@ -155,10 +92,6 @@ int main(void)
     //}
     
     ml_active_tasks_idle();
-    
-    initialize_gpio_pins();
-
-    initialize_leds();
     
     uint32_t index = 0;
     

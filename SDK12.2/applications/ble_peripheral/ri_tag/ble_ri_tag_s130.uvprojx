@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>BLE_STACK_SUPPORT_REQD S130 NRF_SD_BLE_API_VERSION=2 SOFTDEVICE_PRESENT NRF51822 NRF51 SWI_DISABLE0</Define>
+              <Define>BLE_STACK_SUPPORT_REQD S130 NRF_SD_BLE_API_VERSION=2 SOFTDEVICE_PRESENT NRF51822 NRF51 SWI_DISABLE0 ENABLE_BLE400_DEV_BOARD</Define>
               <Undefine></Undefine>
-              <IncludePath>.\CMSIS;.\Application;..\..\..\..\..\softdevice\s110_nrf51_8.0.0_API\include;.\Nordic;.\nrf_app;.\Segger</IncludePath>
+              <IncludePath>.\CMSIS;.\Application;..\..\..\..\..\softdevice\s110_nrf51_8.0.0_API\include;.\Nordic;.\nrf_app;.\Segger;.\BLE400_Utils</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -661,6 +661,21 @@
               <FileName>SEGGER_RTT_printf.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Segger\SEGGER_RTT_printf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BLE400_Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>BLE400_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BLE400_Utils\BLE400_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>BLE400_utils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\BLE400_Utils\BLE400_utils.h</FilePath>
             </File>
           </Files>
         </Group>

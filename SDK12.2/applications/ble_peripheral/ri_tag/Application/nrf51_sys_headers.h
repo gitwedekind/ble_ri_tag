@@ -25,10 +25,11 @@
 #include "nrf_gpiote.h"
 #include "nrf_delay.h"
 
+#include "BLE400_Utils.h"
+#include "DebugMacros.h"
+
 //-------------------------------------------------------------------------------------------------
 // Nordic NRF51 System Headers
 //-------------------------------------------------------------------------------------------------
-#include "nrf51_sys_reset.h"
 #include "nrf51_sys_initialize.h"
-#include "nrf51_sys_ram_control.h"
 #include "nrf51_sys_uart.h"

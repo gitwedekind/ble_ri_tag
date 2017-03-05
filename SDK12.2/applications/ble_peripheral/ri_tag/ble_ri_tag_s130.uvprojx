@@ -333,7 +333,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>BLE_STACK_SUPPORT_REQD S130 NRF_SD_BLE_API_VERSION=2 SOFTDEVICE_PRESENT NRF51822 NRF51 SWI_DISABLE0 ENABLE_BLE400_DEV_BOARD ENABLE_RTT_DEBUG</Define>
+              <Define>BLE_STACK_SUPPORT_REQD S130 NRF_SD_BLE_API_VERSION=2 SOFTDEVICE_PRESENT NRF51822 NRF51 SWI_DISABLE0 ENABLE_BLE400_DEV_BOARD ENABLE_UART_DEBUG</Define>
               <Undefine></Undefine>
               <IncludePath>.\CMSIS;.\Application;..\..\..\..\..\softdevice\s110_nrf51_8.0.0_API\include;.\Nordic;.\DebugMacros;.\Segger;.\BLE400_Utils</IncludePath>
             </VariousControls>
@@ -413,6 +413,26 @@
               <FileName>nrf51_sys_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Application\nrf51_sys_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf51_tag_initialize.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\nrf51_tag_initialize.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf51_tag_initialize.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Application\nrf51_tag_initialize.h</FilePath>
+            </File>
+            <File>
+              <FileName>nrf51_tag_tx_power.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\nrf51_tag_tx_power.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf51_tag_tx_power.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Application\nrf51_tag_tx_power.h</FilePath>
             </File>
           </Files>
         </Group>

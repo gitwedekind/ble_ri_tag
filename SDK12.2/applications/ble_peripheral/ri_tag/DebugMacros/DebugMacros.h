@@ -58,6 +58,10 @@ void bd_address(const char* p_msg, const uint8_t* p_data, size_t length);
 
 #if defined(ENABLE_RTT_DEBUG)
 
+#include "SEGGER.h"
+#include "SEGGER_RTT.h"
+#include "SEGGER_SYSVIEW.h"
+
 int SEGGER_RTT_printf(unsigned BufferIndex, const char * sFormat, ...);
 
 void uart_hex_dump(const char* p_msg, const uint8_t* p_data, size_t length);

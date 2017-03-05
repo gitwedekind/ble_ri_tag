@@ -6,14 +6,7 @@
 #include "nrf51_sys_headers.h"
 #include "nrf51_ble_headers.h"
 
-#include "BLE400_Utils.h"
-
-#include "DebugMacros.h"
-
-#include "SEGGER.h"
-#include "SEGGER_RTT.h"
- 
-#include "SEGGER_SYSVIEW.h"
+#include "nrf51_tag_initialize.h"
 
 #include "main.h"
 
@@ -73,14 +66,15 @@ int main(void)
 {
     sys_uart_initialize(rx_callback, tx_callback, error_callback);
     
-    DBG(CLEAR_SCREEN_STR);
-    DBG("--> main(), %s %s\r\n", __DATE__, __TIME__);
+    DBG_MAIN_ENTERED();
     
     DEV_BOARD_INIT_LEDS();
     DEV_BOARD_INIT_GPIO();
     DEV_BOARD_INIT_BUTTONS();
 
     ml_active_tasks_idle();
+    
+    nrf51_tag_initialize();
     
     LED_ON(LED0);
     

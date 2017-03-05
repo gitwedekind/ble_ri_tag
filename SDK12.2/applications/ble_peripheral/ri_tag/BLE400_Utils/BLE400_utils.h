@@ -58,6 +58,8 @@ void ble400_initialize_gpio_pins(void);
 static const uint32_t BUTTON0 = 16;
 static const uint32_t BUTTON1 = 17;
 
+#define GPIOTE_CHANNEL_0 0
+
 void ble400_initialize_buttons(void);
 
 #define DEV_BOARD_INIT_BUTTONS() ble400_initialize_buttons()

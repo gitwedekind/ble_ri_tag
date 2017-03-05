@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include "std_headers.h"
+#include "nrf51_sys_headers.h"
+
 //-------------------------------------------------------------------------------------------------
 // UART Callback(s)
 //-------------------------------------------------------------------------------------------------
@@ -27,3 +30,5 @@ void sys_uart_tx_buffer_isr(const uint8_t* p_buffer, uint32_t length);
 void sys_uart_tx_string_isr(const uint8_t* pString);
 uint8_t sys_uart_tx_active(void);
 
+void sys_uart_tx_buffer_isr_pend(const uint8_t* p_buffer, uint32_t length);
+void sys_uart_tx_string_isr_pend(const uint8_t* p_string);

@@ -8,6 +8,8 @@
 
 #include "BLE400_Utils.h"
 
+#ifdef ENABLE_BLE400_DEV_BOARD
+
 //-------------------------------------------------------------------------------------------------
 // LED Implementation
 //-------------------------------------------------------------------------------------------------
@@ -60,10 +62,41 @@ void ble400_initialize_gpio_pins(void)
 // Button Implementation
 //-------------------------------------------------------------------------------------------------
 
-static void ble400_initialize_button(uint32_t pin)
+void GPIOTE_IRQHandler()
 {
+    if ( NRF_GPIOTE->EVENTS_PORT )
+    {
+        NRF_GPIOTE->EVENTS_PORT = 0;
+        
+        uint32_t b0_pressed = nrf_gpio_pin_read(BUTTON0);
+        uint32_t b1_pressed = nrf_gpio_pin_read(BUTTON1);
+        
+        if (b0_pressed)
+        {
+            LED_OFF(LED0);
+        }
+        
+        if (b1_pressed)
+        {
+            LED_ON(LED0);
+        }
+    }
+}
+    
+void ble400_initialize_buttons(void)
+{
+    NVIC_DisableIRQ(GPIOTE_IRQn);
+    
+    nrf_gpio_cfg_sense_input(BUTTON0, NRF_GPIO_PIN_PULLUP, NRF_GPIO_PIN_SENSE_LOW);
+    nrf_gpio_cfg_sense_input(BUTTON1, NRF_GPIO_PIN_PULLUP, NRF_GPIO_PIN_SENSE_LOW);
+    
+    NRF_GPIOTE->INTENCLR = 0xFFFFFFFF; 
+    NRF_GPIOTE->INTENSET = GPIOTE_INTENSET_PORT_Msk;
+
+    NVIC_ClearPendingIRQ(GPIOTE_IRQn);
+    NVIC_SetPriority(GPIOTE_IRQn, 14);
+
+    NVIC_EnableIRQ(GPIOTE_IRQn);
 }
 
-void ble400_initialize _buttons(void)
-{
-}
+#endif // ENABLE_BLE400_DEV_BOARD

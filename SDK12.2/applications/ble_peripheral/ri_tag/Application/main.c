@@ -8,6 +8,8 @@
 
 #include "BLE400_Utils.h"
 
+#include "DebugMacros.h"
+
 #include "SEGGER.h"
 #include "SEGGER_RTT.h"
  
@@ -69,53 +71,18 @@ void error_callback(uint32_t err)
  */
 int main(void)
 {
-    //static const char* p_segger_msg = "--> segger\r\n"; 
-    //SEGGER_RTT_Init();
-    //SEGGER_RTT_Write(0, p_segger_msg, strlen(p_segger_msg));
+    sys_uart_initialize(rx_callback, tx_callback, error_callback);
+    
+    DBG(CLEAR_SCREEN_STR);
+    DBG("--> main(), %s %s\r\n", __DATE__, __TIME__);
     
     DEV_BOARD_INIT_LEDS();
     DEV_BOARD_INIT_GPIO();
     DEV_BOARD_INIT_BUTTONS();
 
-    sys_uart_initialize(rx_callback, tx_callback, error_callback);
-    
-    static char test[128] = {0};
-    
-    //sys_uart_tx_buffer_isr(p_test, strlen((char*)p_test));
-    
-    //sys_uart_tx_string(p_test);
-    
-    //while (1)
-    //{
-    //    sys_uart_tx_string(p_test);
-    //    nrf_delay_ms(1000);
-    //}
-    
     ml_active_tasks_idle();
     
-    uint32_t index = 0;
-    
-    while ( index < 100 )
-    {
-        if ( !sys_uart_tx_active() )
-        {
-            ++index;
-            snprintf(test, sizeof(test), "--> %d\r\n", index );
-            sys_uart_tx_buffer_isr(test, strlen((char*)test));
-        }
-    }
-    
-    while ( 1 )
-    {
-        if ( !sys_uart_tx_active() )
-        {
-            snprintf(test, sizeof(test), "--> tx count %d\r\n", count );
-            sys_uart_tx_buffer_isr(test, strlen((char*)test));
-            
-            break;
-        }
-    }
-
+    LED_ON(LED0);
     
     while (1)
     {

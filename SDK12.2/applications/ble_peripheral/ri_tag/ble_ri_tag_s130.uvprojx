@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>BLE_STACK_SUPPORT_REQD S130 NRF_SD_BLE_API_VERSION=2 SOFTDEVICE_PRESENT NRF51822 NRF51 SWI_DISABLE0 ENABLE_BLE400_DEV_BOARD</Define>
+              <Define>BLE_STACK_SUPPORT_REQD S130 NRF_SD_BLE_API_VERSION=2 SOFTDEVICE_PRESENT NRF51822 NRF51 SWI_DISABLE0 ENABLE_BLE400_DEV_BOARD ENABLE_RTT_DEBUG</Define>
               <Undefine></Undefine>
-              <IncludePath>.\CMSIS;.\Application;..\..\..\..\..\softdevice\s110_nrf51_8.0.0_API\include;.\Nordic;.\nrf_app;.\Segger;.\BLE400_Utils</IncludePath>
+              <IncludePath>.\CMSIS;.\Application;..\..\..\..\..\softdevice\s110_nrf51_8.0.0_API\include;.\Nordic;.\DebugMacros;.\Segger;.\BLE400_Utils</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -480,11 +480,6 @@
               <FilePath>.\Nordic\nrf51_bitfields.h</FilePath>
             </File>
             <File>
-              <FileName>nrf_error.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Nordic\nrf_error.h</FilePath>
-            </File>
-            <File>
               <FileName>nrf_nvic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Nordic\nrf_nvic.c</FilePath>
@@ -528,6 +523,11 @@
               <FileName>nrf_delay.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Nordic\nrf_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>nrf_error.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Nordic\nrf_error.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -627,7 +627,19 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>nrf_app</GroupName>
+          <GroupName>DebugMacros</GroupName>
+          <Files>
+            <File>
+              <FileName>DebugMacros.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DebugMacros\DebugMacros.c</FilePath>
+            </File>
+            <File>
+              <FileName>DebugMacros.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DebugMacros\DebugMacros.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Segger</GroupName>

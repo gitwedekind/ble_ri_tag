@@ -4,8 +4,7 @@
 *
 */
 
-#include "std_headers.h"
-#include "nrf51_sys_headers.h"
+#include "nrf51_sys_uart.h"
 
 //-------------------------------------------------------------------------------------------------
 // Module Variables / Constants
@@ -38,7 +37,7 @@ static volatile uint8_t s_tx_active = 0;
 #define TX_PIN_NUMBER 9  // UART TX pin number
 #define RX_PIN_NUMBER 11 // UART RX pin number
 
-//#define DISABLE_HWFC
+#define DISABLE_HWFC
 #define ENABLE_HWFC
 
 #ifdef DISABLE_HWFC
@@ -223,17 +222,48 @@ void sys_uart_tx_buffer_isr(const uint8_t* p_buffer, uint32_t length)
     }
 }
 
-uint8_t sys_uart_tx_active(void)
-{
-    return s_tx_active;
-}
-
 /**
  *
  */
 void sys_uart_tx_string_isr(const uint8_t* p_string)
 {
     sys_uart_tx_buffer_isr(p_string, strlen((char*)p_string));
+}
+
+/**
+ *
+ */
+void sys_uart_tx_buffer_isr_pend(const uint8_t* p_buffer, uint32_t length)
+{
+    if ( NRF_UART0->ENABLE && p_buffer )
+    {
+        while (s_tx_active);
+        
+        s_tx_active = 1;
+
+        s_tx_length = length;
+
+        memcpy(s_tx_buffer, p_buffer, s_tx_length);
+        
+        s_tx_index = 0;
+        
+        NRF_UART0->EVENTS_TXDRDY = 0; 
+        
+        NRF_UART0->TXD = s_tx_buffer[s_tx_index];
+    }
+}
+
+/**
+ *
+ */
+void sys_uart_tx_string_isr_pend(const uint8_t* p_string)
+{
+    sys_uart_tx_buffer_isr_pend(p_string, strlen((char*)p_string));
+}
+
+uint8_t sys_uart_tx_active(void)
+{
+    return s_tx_active;
 }
 
 /**

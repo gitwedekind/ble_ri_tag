@@ -14,9 +14,11 @@
 
 #include "nrf.h"
 #include "nrf_peripherals.h"
-#include "nrf_assert.h"
+//#include "nrf_assert.h"
 #include <stdbool.h>
 #include <stdlib.h>
+
+#define ASSERT(x_test)
 
 #ifdef __cplusplus
 extern "C" {

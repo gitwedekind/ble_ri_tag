@@ -434,6 +434,16 @@
               <FileType>5</FileType>
               <FilePath>.\Application\nrf51_tag_tx_power.h</FilePath>
             </File>
+            <File>
+              <FileName>nrf51_tag_power_manage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\nrf51_tag_power_manage.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf51_tag_power_manage.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Application\nrf51_tag_power_manage.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

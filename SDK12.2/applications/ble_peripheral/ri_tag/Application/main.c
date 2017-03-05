@@ -7,6 +7,7 @@
 #include "nrf51_ble_headers.h"
 
 #include "nrf51_tag_initialize.h"
+#include "nrf51_tag_power_manage.h"
 
 #include "main.h"
 
@@ -82,6 +83,7 @@ int main(void)
     {
         if ( s_ActiveTasks == MAIN_LOOP_TASK_IDLE )
         {
+            //power_manage();
         }
 
         if ( s_ActiveTasks & MAIN_LOOP_TASK_BLE_TRANSMIT )

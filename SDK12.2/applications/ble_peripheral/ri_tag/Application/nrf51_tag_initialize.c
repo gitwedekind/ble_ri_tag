@@ -5,6 +5,7 @@
 */
 
 #include "nrf51_tag_initialize.h"
+#include "nrf51_tag_power_manage.h"
 
 // ----------------------------------------------------------------------------
 // Global Variables
@@ -22,4 +23,6 @@ void nrf51_tag_initialize(void)
     DBG_RESET_REASON();
     DBG_GPRR();
     DBG_TX_POWER();
+    
+    initialize_power_manage();
 }
